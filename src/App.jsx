@@ -1,32 +1,36 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
+/* Ad banner. Change AD_RATIO if the video is not 16:9 (e.g. '21 / 9'). */
+const AD = 'https://player.cloudinary.com/embed/?cloud_name=bvw3okdf&public_id=New_Project_29_47DDC02&fluid=true&autoplay=true&muted=true&loop=true';
+const AD_RATIO = '16 / 9';
+
 const GROUPS = [
   { id: 'xmarket', title: 'Xmarket' },
-  { id: 'apps', title: 'Apps & Projects' },
+  { id: 'apps', title: 'Apps' },
   { id: 'social', title: 'Social' },
   { id: 'contact', title: 'Contact' },
 ];
 
 const LINKS = [
-  { id: 'landing', group: 'xmarket', label: 'Xmarket Landing Page', sub: 'xmarket-landing.onrender.com', url: 'xmarket-landing.onrender.com', icon: 'globe' },
-  { id: 'shop', group: 'xmarket', label: 'Xmarket', sub: 'xmarket-app.shop', url: 'xmarket-app.shop', icon: 'cart' },
-  { id: 'signup', group: 'xmarket', label: 'Create Account', sub: 'Join Xmarket', url: 'xmarket-app.onrender.com/signup', icon: 'user' },
-  { id: 'xmail', group: 'xmarket', label: 'Xmarket Email', sub: 'xmarket.official.marketplace@gmail.com', url: 'xmarket.official.marketplace@gmail.com', icon: 'mail' },
-  { id: 'xfb', group: 'xmarket', label: 'Xmarket Facebook Page', sub: 'facebook.com', url: 'https://www.facebook.com/share/18iMp1CDtN/', icon: 'f' },
-  { id: 'course', group: 'apps', label: 'Xentrepreneur Online Course', sub: 'xentrepreneur-app.vercel.app', url: 'xentrepreneur-app.vercel.app', icon: 'cap' },
-  { id: 'receiptx', group: 'apps', label: 'ReceiptX App', sub: 'receiptx-app.vercel.app', url: 'receiptx-app.vercel.app', icon: 'receipt' },
-  { id: 'pricee', group: 'apps', label: 'Pricee App', sub: 'pricee-app.vercel.app', url: 'pricee-app.vercel.app', icon: 'tag' },
-  { id: 'astra', group: 'apps', label: 'Project Astra', sub: 'project-astraaa.onrender.com', url: 'project-astraaa.onrender.com', icon: 'star' },
-  { id: 'fb', group: 'social', label: 'Facebook', sub: 'facebook.com', url: 'https://www.facebook.com/share/1V38WfYUVW/', icon: 'f' },
-  { id: 'ig', group: 'social', label: 'Instagram', sub: '@jssrll.07', url: 'https://www.instagram.com/jssrll.07?mdxt=MTB3NmsxNzlkaHhmaw==', icon: 'IG' },
-  { id: 'tt', group: 'social', label: 'TikTok', sub: '@shaomi3_07', url: 'tiktok.com/@shaomi3_07', icon: 'TT' },
-  { id: 'sp', group: 'social', label: 'Spotify', sub: 'open.spotify.com', url: 'https://open.spotify.com/user/31fjj7m6vyvicxsurqgrb3whpze4?si=LzyxMxudRJCq_dpCQi3NiA&utm_source=copy-link', icon: 'note' },
-  { id: 'x', group: 'social', label: 'Twitter (X)', sub: '@astrater07', url: 'https://x.com/astrater07', icon: 'X' },
-  { id: 'dc', group: 'social', label: 'Discord', sub: 'discord.gg', url: 'https://discord.gg/nZbUyKQv', icon: 'DC' },
-  { id: 'sc', group: 'social', label: 'Snapchat', sub: '@astrater07', url: 'https://www.snapchat.com/add/astrater07?share_id=ghUe2s-mLIw&locale=en-GB', icon: 'SC' },
-  { id: 'mail', group: 'contact', label: 'Email', sub: 'custodiojessrell07@gmail.com', url: 'custodiojessrell07@gmail.com', icon: 'mail' },
-  { id: 'tg', group: 'contact', label: 'Telegram', sub: 't.me/zyntx01', url: 't.me/zyntx01', icon: 'send' },
+  { id: 'landing', group: 'xmarket', label: 'Xmarket Landing Page', tag: 'Website', url: 'xmarket-landing.onrender.com', own: true, domain: 'xmarket-landing.onrender.com' },
+  { id: 'shop', group: 'xmarket', label: 'Xmarket', tag: 'Shop', cta: 'Shop now', feature: true, url: 'xmarket-app.shop', own: true, domain: 'xmarket-app.shop' },
+  { id: 'signup', group: 'xmarket', label: 'Create Account', tag: 'Sign up', cta: 'Join', url: 'xmarket-app.onrender.com/signup', own: true, domain: 'xmarket-app.shop' },
+  { id: 'xmail', group: 'xmarket', label: 'Xmarket Email', tag: 'Email', url: 'xmarket.official.marketplace@gmail.com', slug: 'gmail', color: 'EA4335' },
+  { id: 'xfb', group: 'xmarket', label: 'Xmarket Facebook Page', tag: 'Page', url: 'https://www.facebook.com/share/18iMp1CDtN/', slug: 'facebook', color: '1877F2' },
+  { id: 'course', group: 'apps', label: 'Xentrepreneur Online Course', tag: 'Course', url: 'xentrepreneur-app.vercel.app', own: true, domain: 'xentrepreneur-app.vercel.app' },
+  { id: 'receiptx', group: 'apps', label: 'ReceiptX App', tag: 'App', url: 'receiptx-app.vercel.app', own: true, domain: 'receiptx-app.vercel.app' },
+  { id: 'pricee', group: 'apps', label: 'Pricee App', tag: 'App', url: 'pricee-app.vercel.app', own: true, domain: 'pricee-app.vercel.app' },
+  { id: 'astra', group: 'apps', label: 'Project Astra', tag: 'Project', url: 'project-astraaa.onrender.com', own: true, domain: 'project-astraaa.onrender.com' },
+  { id: 'fb', group: 'social', label: 'Facebook', tag: 'Follow', url: 'https://www.facebook.com/share/1V38WfYUVW/', slug: 'facebook', color: '1877F2' },
+  { id: 'ig', group: 'social', label: 'Instagram', tag: 'Follow', url: 'https://www.instagram.com/jssrll.07?mdxt=MTB3NmsxNzlkaHhmaw==', slug: 'instagram', color: 'E4405F' },
+  { id: 'tt', group: 'social', label: 'TikTok', tag: 'Follow', url: 'tiktok.com/@shaomi3_07', slug: 'tiktok', color: '000000' },
+  { id: 'sp', group: 'social', label: 'Spotify', tag: 'Music', url: 'https://open.spotify.com/user/31fjj7m6vyvicxsurqgrb3whpze4?si=LzyxMxudRJCq_dpCQi3NiA&utm_source=copy-link', slug: 'spotify', color: '1DB954' },
+  { id: 'x', group: 'social', label: 'Twitter (X)', tag: 'Follow', url: 'https://x.com/astrater07', slug: 'x', color: '000000' },
+  { id: 'dc', group: 'social', label: 'Discord', tag: 'Join', url: 'https://discord.gg/nZbUyKQv', slug: 'discord', color: '5865F2' },
+  { id: 'sc', group: 'social', label: 'Snapchat', tag: 'Add', url: 'https://www.snapchat.com/add/astrater07?share_id=ghUe2s-mLIw&locale=en-GB', slug: 'snapchat', color: 'F7C600' },
+  { id: 'mail', group: 'contact', label: 'Email', tag: 'Message', url: 'custodiojessrell07@gmail.com', slug: 'gmail', color: 'EA4335' },
+  { id: 'tg', group: 'contact', label: 'Telegram', tag: 'Chat', url: 't.me/zyntx01', slug: 'telegram', color: '26A5E4' },
 ];
 
 const toHref = (u) => {
@@ -35,105 +39,154 @@ const toHref = (u) => {
   return 'https://' + u;
 };
 
-const P = {
-  globe: 'M12 3a9 9 0 100 18 9 9 0 000-18zm0 0c2.5 2.4 3.8 5.4 3.8 9S14.5 18.6 12 21m0-18C9.5 5.4 8.2 8.4 8.2 12S9.5 18.6 12 21M3.5 9h17M3.5 15h17',
-  cart: 'M3 4h2l2.2 10.2a1 1 0 001 .8h8.6a1 1 0 001-.8L19 8H6.2M9.5 19.5h.01M16.5 19.5h.01',
-  user: 'M12 12a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 0114 0M19 8v6M16 11h6',
-  mail: 'M4 6h16v12H4zM4 7l8 6 8-6',
-  cap: 'M2 9l10-5 10 5-10 5zM6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5',
-  receipt: 'M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6',
-  tag: 'M3 12V4h8l10 10-8 8zM7.5 8h.01',
-  star: 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z',
-  note: 'M9 18V6l10-2v12M9 18a3 3 0 11-6 0 3 3 0 016 0zm10-2a3 3 0 11-6 0 3 3 0 016 0z',
-  send: 'M21 3L3 10.5l6 2.2L11.5 20l3-5 5 3.5zM9 12.7L21 3',
+const sources = (it) => {
+  const out = [];
+  if (it.own) out.push('/logos/' + it.id + '.png');
+  if (it.slug) out.push('https://cdn.simpleicons.org/' + it.slug + '/' + it.color);
+  if (it.domain) out.push('https://www.google.com/s2/favicons?domain=' + it.domain + '&sz=128');
+  return out;
 };
 
-function Icon({ name }) {
-  if (P[name]) {
-    return (
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d={P[name]} />
-      </svg>
-    );
-  }
-  return <span className="mono">{name}</span>;
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const Sk = ({ className = '' }) => <i className={'sk ' + className} />;
+
+function Logo({ item, big }) {
+  const list = sources(item);
+  const [i, setI] = useState(0);
+  const [ok, setOk] = useState(false);
+  const src = list[i];
+  return (
+    <span className={'badge' + (big ? ' big' : '') + (ok ? ' ok' : '')}>
+      {src
+        ? <img key={src} src={src} alt="" decoding="async" onLoad={() => setOk(true)} onError={() => setI((n) => n + 1)} />
+        : <span className="mono">{item.label[0]}</span>}
+      {src && !ok && <Sk className="fill" />}
+    </span>
+  );
 }
 
 function Card({ item, index }) {
   const ref = useRef(null);
+  const raf = useRef(0);
+  const fine = useRef(window.matchMedia('(hover: hover) and (pointer: fine)').matches);
   const move = (e) => {
-    const el = ref.current; if (!el) return;
-    const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.setProperty('--rx', (-y * 14).toFixed(2) + 'deg');
-    el.style.setProperty('--ry', (x * 14).toFixed(2) + 'deg');
-    el.style.setProperty('--gx', (x * 100 + 50).toFixed(1) + '%');
-    el.style.setProperty('--gy', (y * 100 + 50).toFixed(1) + '%');
+    if (!fine.current || raf.current) return;
+    const { clientX, clientY } = e;
+    raf.current = requestAnimationFrame(() => {
+      raf.current = 0;
+      const el = ref.current; if (!el) return;
+      const r = el.getBoundingClientRect();
+      const x = (clientX - r.left) / r.width - 0.5;
+      const y = (clientY - r.top) / r.height - 0.5;
+      el.style.setProperty('--rx', (-y * 8).toFixed(1) + 'deg');
+      el.style.setProperty('--ry', (x * 8).toFixed(1) + 'deg');
+    });
   };
   const reset = () => {
     const el = ref.current; if (!el) return;
     el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg');
   };
   const href = toHref(item.url);
-  const external = href.startsWith('http');
+  const ext = href.startsWith('http');
   return (
     <a
-      className="card-wrap"
+      className={'card-wrap' + (item.feature ? ' feature' : '')}
       href={href}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noopener noreferrer' : undefined}
-      style={{ viewTransitionName: 'c-' + item.id, '--i': index }}
+      target={ext ? '_blank' : undefined}
+      rel={ext ? 'noopener noreferrer' : undefined}
+      aria-label={item.label}
+      style={{ viewTransitionName: 'c-' + item.id, '--i': Math.min(index, 8) }}
       onPointerMove={move}
       onPointerLeave={reset}
-      onPointerUp={reset}
     >
       <div className="card" ref={ref}>
-        <span className="badge"><Icon name={item.icon} /></span>
+        <Logo item={item} />
         <span className="txt">
           <b>{item.label}</b>
-          <small>{item.sub}</small>
+          <em className="tag">{item.tag}</em>
         </span>
-        <span className="arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
-        </span>
+        {item.cta
+          ? <span className="cta">{item.cta}</span>
+          : <span className="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg></span>}
       </div>
     </a>
   );
 }
 
+function Ad() {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="ad" style={{ aspectRatio: AD_RATIO }}>
+      {!loaded && <Sk className="fill" />}
+      <iframe
+        src={AD}
+        title="Xmarket"
+        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+        allowFullScreen
+        referrerPolicy="strict-origin-when-cross-origin"
+        onLoad={() => setLoaded(true)}
+        className={loaded ? 'on' : ''}
+      />
+    </div>
+  );
+}
+
+function PageSkeleton() {
+  return (
+    <div aria-busy="true" aria-label="Loading">
+      <div className="hero">
+        <Sk className="s-logo" /><Sk className="s-title" /><Sk className="s-chip" />
+      </div>
+      <div className="tabs">{[0, 1, 2, 3, 4].map((k) => <Sk key={k} className="s-tab" />)}</div>
+      <div className="grid">
+        {[0, 1, 2, 3, 4, 5].map((k) => (
+          <div key={k} className="card-wrap"><div className="card">
+            <Sk className="s-badge" />
+            <span className="txt"><Sk className="s-line" /><Sk className="s-line short" /></span>
+          </div></div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [tab, setTab] = useState('all');
+  const [ready, setReady] = useState(false);
+  const [copied, setCopied] = useState(false);
   const root = useRef(null);
 
-  const morph = (next) => {
+  useEffect(() => { const t = setTimeout(() => setReady(true), 650); return () => clearTimeout(t); }, []);
+
+  const morph = (next, e) => {
     if (next === tab) return;
-    if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.startViewTransition(() => { flushSync(() => setTab(next)); });
-    } else setTab(next);
+    if (e && e.currentTarget && e.currentTarget.scrollIntoView) e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    if (document.startViewTransition && !reduced()) document.startViewTransition(() => { flushSync(() => setTab(next)); });
+    else setTab(next);
   };
 
+  /* parallax: runs only while something is moving */
   useEffect(() => {
-    const el = root.current; if (!el) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    let raf = 0, tx = 0, ty = 0, cx = 0, cy = 0;
-    const loop = () => {
-      cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
+    const el = root.current; if (!el || reduced()) return;
+    let raf = 0, tx = 0, ty = 0, cx = 0, cy = 0, sy = 0, ssy = -1;
+    const frame = () => {
+      cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
       el.style.setProperty('--mx', cx.toFixed(3));
       el.style.setProperty('--my', cy.toFixed(3));
-      raf = requestAnimationFrame(loop);
+      if (sy !== ssy) { el.style.setProperty('--sy', String(sy)); ssy = sy; }
+      raf = (Math.abs(tx - cx) > 0.002 || Math.abs(ty - cy) > 0.002) ? requestAnimationFrame(frame) : 0;
     };
-    const onPtr = (e) => { tx = (e.clientX / window.innerWidth - 0.5) * 2; ty = (e.clientY / window.innerHeight - 0.5) * 2; };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    const onPtr = (e) => { tx = (e.clientX / window.innerWidth - 0.5) * 2; ty = (e.clientY / window.innerHeight - 0.5) * 2; kick(); };
     const onTilt = (e) => {
       if (e.gamma == null) return;
-      tx = Math.max(-1, Math.min(1, e.gamma / 30));
-      ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
+      tx = Math.max(-1, Math.min(1, e.gamma / 30)); ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30)); kick();
     };
-    const onScroll = () => el.style.setProperty('--sy', String(window.scrollY));
+    const onScroll = () => { sy = window.scrollY; kick(); };
     window.addEventListener('pointermove', onPtr, { passive: true });
     window.addEventListener('deviceorientation', onTilt, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); loop();
+    onScroll();
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onPtr);
@@ -142,42 +195,57 @@ export default function App() {
     };
   }, []);
 
-  const tabs = [{ id: 'all', title: 'All' }, ...GROUPS];
+  const share = async () => {
+    const data = { title: 'Xmarket', url: window.location.href };
+    try {
+      if (navigator.share) await navigator.share(data);
+      else { await navigator.clipboard.writeText(data.url); setCopied(true); setTimeout(() => setCopied(false), 1600); }
+    } catch (e) { /* cancelled */ }
+  };
+
+  const tabs = [{ id: 'all', title: 'All', count: LINKS.length }, ...GROUPS.map((g) => ({ ...g, count: LINKS.filter((l) => l.group === g.id).length }))];
   const shown = GROUPS.filter((g) => tab === 'all' || tab === g.id);
   let n = 0;
 
   return (
     <div className="app" ref={root}>
-      <div className="bg" aria-hidden="true">
-        <i className="orb o1" /><i className="orb o2" /><i className="orb o3" /><i className="orb o4" />
-      </div>
+      <div className="bg" aria-hidden="true"><i className="orb o1" /><i className="orb o2" /><i className="orb o3" /></div>
 
       <main className="shell">
-        <header className="hero">
-          <div className="logo" style={{ viewTransitionName: 'logo' }}><span>X</span></div>
-          <h1>Let&rsquo;s connect</h1>
-          <p>Scan. Tap. Connect. Everything in one place.</p>
-        </header>
+        <Ad />
 
-        <nav className="tabs" aria-label="Link groups">
-          {tabs.map((t) => (
-            <button key={t.id} className={tab === t.id ? 'on' : ''} onClick={() => morph(t.id)} aria-pressed={tab === t.id}>
-              {tab === t.id && <span className="pill" style={{ viewTransitionName: 'pill' }} />}
-              <span className="lbl">{t.title}</span>
-            </button>
-          ))}
-        </nav>
+        {!ready ? <PageSkeleton /> : (
+          <>
+            <header className="hero">
+              <div style={{ viewTransitionName: 'logo' }} className="logo"><Logo item={LINKS[1]} big /></div>
+              <h1>Xmarket</h1>
+              <div className="meta">
+                <span className="chip"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>Official links</span>
+                <button className="chip btn" onClick={share}>{copied ? 'Link copied' : 'Share'}</button>
+              </div>
+            </header>
 
-        {shown.map((g) => (
-          <section key={g.id} className="sec">
-            <h2>{g.title}</h2>
-            <div className="grid">
-              {LINKS.filter((l) => l.group === g.id).map((l) => <Card key={l.id} item={l} index={n++} />)}
-            </div>
-          </section>
-        ))}
+            <nav className="tabs" aria-label="Link groups">
+              {tabs.map((t) => (
+                <button key={t.id} className={tab === t.id ? 'on' : ''} onClick={(e) => morph(t.id, e)} aria-pressed={tab === t.id}>
+                  {tab === t.id && <span className="pill" style={{ viewTransitionName: 'pill' }} />}
+                  <span className="lbl">{t.title}<em>{t.count}</em></span>
+                </button>
+              ))}
+            </nav>
 
-        <footer>&copy; {new Date().getFullYear()} Xmarket</footer>
+            {shown.map((g) => (
+              <section key={g.id} className="sec">
+                <h2>{g.title}</h2>
+                <div className="grid">
+                  {LINKS.filter((l) => l.group === g.id).map((l) => <Card key={l.id} item={l} index={n++} />)}
+                </div>
+              </section>
+            ))}
+
+            <footer>&copy; {new Date().getFullYear()} Xmarket</footer>
+          </>
+        )}
       </main>
     </div>
   );
