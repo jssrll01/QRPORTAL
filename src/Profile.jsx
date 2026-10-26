@@ -122,7 +122,6 @@ export default function Profile() {
                 <p>{p.category}</p>
                 <dl className="pf-meta">
                   <dt>Type</dt><dd>{p.type}</dd>
-                  <dt>Version</dt><dd>{p.version}</dd>
                   <dt>Started</dt><dd>{p.started}</dd>
                   <dt>Deployed</dt><dd>{p.deployed}</dd>
                   <dt>Updated</dt><dd>{p.updated}</dd>
@@ -159,8 +158,8 @@ export default function Profile() {
           </div>
         </Section>
 
-        <Section id="certs" title="Certifications"><Gallery items={CERTS} /></Section>
-        <Section id="ach" title="Achievements"><Gallery items={ACHIEVEMENTS} /></Section>
+<Section id="certs" title="Certifications"><a className="pf-open" href="#/certifications"><span><b>View my Certifications</b><small>{CERTS.length} certificates</small></span><span aria-hidden="true">→</span></a></Section>
+<Section id="ach" title="Achievements"><a className="pf-open" href="#/achievements"><span><b>View my Achievements</b><small>{ACHIEVEMENTS.length} achievements</small></span><span aria-hidden="true">→</span></a></Section>
 <Section id="col" title="Collection"><a className="pf-open" href="#/collection"><span><b>View my Collection</b><small>{PHOTOS.length} photos</small></span><span aria-hidden="true">→</span></a></Section>
 
         <Section id="contact" title="Contact">
