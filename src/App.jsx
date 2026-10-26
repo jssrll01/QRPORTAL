@@ -9,6 +9,7 @@ const GROUPS = [
   { id: 'xmarket', title: 'Xmarket' },
   { id: 'apps', title: 'Apps' },
   { id: 'social', title: 'Social' },
+{ id: 'profile', title: 'Profile' },
   { id: 'contact', title: 'Contact' },
 ];
 
@@ -28,11 +29,13 @@ const LINKS = [
   { id: 'x', group: 'social', label: 'Twitter (X)', tag: 'Follow', url: 'https://x.com/astrater07', slug: 'x', color: '000000' },
   { id: 'dc', group: 'social', label: 'Discord', tag: 'Join', url: 'https://discord.gg/nZbUyKQv', slug: 'discord', color: '5865F2' },
   { id: 'sc', group: 'social', label: 'Snapchat', tag: 'Add', url: 'https://www.snapchat.com/add/astrater07?share_id=ghUe2s-mLIw&locale=en-GB', slug: 'snapchat', color: 'F7C600' },
+{ id: 'unknown', group: 'profile', label: 'Project Unknown', tag: 'Profile', url: '#/profile' },
   { id: 'mail', group: 'contact', label: 'Email', tag: 'Message', url: 'custodiojessrell07@gmail.com', slug: 'gmail', color: 'EA4335' },
   { id: 'tg', group: 'contact', label: 'Telegram', tag: 'Chat', url: 't.me/zyntx01', slug: 'telegram', color: '26A5E4' },
 ];
 
 const toHref = (u) => {
+if (u.startsWith('#')) return u;
   if (/^(https?:|mailto:)/i.test(u)) return u;
   if (u.includes('@') && !u.includes('/') && !u.startsWith('tiktok')) return 'mailto:' + u;
   return 'https://' + u;
