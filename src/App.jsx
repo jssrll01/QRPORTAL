@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
+import { PromoBanner } from "./Services.jsx";
 import { flushSync } from 'react-dom';
 
 const VIDEO = 'https://res.cloudinary.com/bvw3okdf/video/upload/q_auto/New_Project_29_47DDC02.mp4';
@@ -20,7 +21,6 @@ const LINKS = [
   { id: 'course', group: 'apps', label: 'Xentrepreneur Online Course', tag: 'Course', url: 'xentrepreneur-app.vercel.app', own: true, domain: 'xentrepreneur-app.vercel.app' },
   { id: 'receiptx', group: 'apps', label: 'ReceiptX App', tag: 'App', url: 'receiptx-app.vercel.app', own: true, domain: 'receiptx-app.vercel.app' },
   { id: 'pricee', group: 'apps', label: 'Pricee App', tag: 'App', url: 'pricee-app.vercel.app', own: true, domain: 'pricee-app.vercel.app' },
-  { id: 'astra', group: 'apps', label: 'Project Astra', tag: 'Project', url: 'project-astraaa.onrender.com', own: true, domain: 'project-astraaa.onrender.com' },
   { id: 'fb', group: 'social', label: 'Facebook', tag: 'Follow', url: 'https://www.facebook.com/share/1V38WfYUVW/', slug: 'facebook', color: '1877F2' },
   { id: 'ig', group: 'social', label: 'Instagram', tag: 'Follow', url: 'https://www.instagram.com/jssrll.07?mdxt=MTB3NmsxNzlkaHhmaw==', slug: 'instagram', color: 'E4405F' },
   { id: 'tt', group: 'social', label: 'TikTok', tag: 'Follow', url: 'tiktok.com/@shaomi3_07', slug: 'tiktok', color: '000000' },
@@ -181,16 +181,8 @@ export default function App() {
           </div>
         </header>
 
-        <Ad />
+<PromoBanner />
 
-        <nav className="tabs" ref={nav} aria-label="Link groups">
-          {tabs.map((t) => (
-            <button key={t.id} className={tab === t.id ? 'on' : ''} onClick={(e) => morph(t.id, e)} aria-pressed={tab === t.id}>
-              {tab === t.id && <span className="pill" style={{ viewTransitionName: 'pill' }} />}
-              <span className="lbl">{t.title}<em>{t.count}</em></span>
-            </button>
-          ))}
-        </nav>
 
         {shown.map((g) => (
           <section key={g.id} className="sec">
