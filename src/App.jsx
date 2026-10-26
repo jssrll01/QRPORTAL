@@ -8,8 +8,8 @@ const AD_RATIO = '16 / 9';
 const GROUPS = [
   { id: 'xmarket', title: 'Xmarket' },
   { id: 'apps', title: 'Apps' },
-  { id: 'social', title: 'Social' },
 { id: 'profile', title: 'Personal Information' },
+  { id: 'social', title: 'Social' },
   { id: 'contact', title: 'Contact' },
 ];
 
