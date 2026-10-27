@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom';
 const VIDEO = 'https://res.cloudinary.com/bvw3okdf/video/upload/q_auto/New_Project_29_47DDC02.mp4';
 const AD_RATIO = '16 / 9';
 
-const GROUPS = [
+export const GROUPS = [
   { id: 'xmarket', title: 'Xmarket' },
   { id: 'apps', title: 'Apps' },
 { id: 'profile', title: 'Personal Information' },
@@ -13,7 +13,7 @@ const GROUPS = [
   { id: 'contact', title: 'Contact' },
 ];
 
-const LINKS = [
+export const LINKS = [
   { id: 'landing', group: 'xmarket', label: 'Xmarket Landing Page', tag: 'Landing Page', url: 'xmarket-landing.onrender.com', own: true, logo: 'shop' },
   { id: 'shop', group: 'xmarket', label: 'Xmarket', tag: 'Shop', cta: 'Shop now', feature: true, url: 'xmarket-app.shop', own: true },
   { id: 'signup', group: 'xmarket', label: 'Create Account', tag: 'Sign up', cta: 'Join', url: 'xmarket-app.onrender.com/signup', own: true, logo: 'shop' },

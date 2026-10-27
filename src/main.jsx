@@ -7,6 +7,7 @@ import Collection from './Collection.jsx';
 import { Certifications, Achievements } from './GalleryPages.jsx';
 import './styles.css';
 import './guard.js';
+import { loadQrp } from './qrpApi.js';
 
 function Root() {
   const [h, setH] = useState(window.location.hash);
@@ -24,4 +25,4 @@ if (h.startsWith('#/achievements')) return <Achievements />;
   return <App />;
 }
 
-createRoot(document.getElementById('root')).render(<Root />);
+loadQrp().finally(() => createRoot(document.getElementById('root')).render(<Root />));
