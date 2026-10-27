@@ -1,6 +1,6 @@
 import { LINKS, GROUPS } from './App.jsx';
 import { HERO, QUOTES, STATS, ABOUT, SKILLS, JOURNEY, PROJECTS, CERTS, ACHIEVEMENTS, CONTACT } from './profileData.js';
-import { CATS, INCLUDED, TERMS } from './servicesData.js';
+import { CATS, INCLUDED, TERMS, CONFIG } from './servicesData.js';
 
 const URL_ = import.meta.env.VITE_SUPABASE_URL;
 const KEY = import.meta.env.VITE_SUPABASE_KEY;
@@ -36,6 +36,7 @@ export async function loadQrp() {
     if (c.link_groups) swap(GROUPS, c.link_groups);
     if (c.svc_included) swap(INCLUDED, c.svc_included);
     if (c.svc_terms) swap(TERMS, c.svc_terms);
+  if (c.site_config) Object.assign(CONFIG, c.site_config);
   } catch (e) {
     console.warn('QR Portal: using built-in data', e);
   } finally {

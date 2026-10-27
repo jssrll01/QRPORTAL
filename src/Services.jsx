@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react';
-import { CATS, INCLUDED, TERMS } from './servicesData.js';
+import { CATS, INCLUDED, TERMS, CONFIG } from './servicesData.js';
 
 export const SERVICES_HASH = '#/services';
 
-const MARKUP = 0.5;        // real price = listed price + 50%
-const TAG = '50% OFF';
-const FB_URL = 'https://www.facebook.com/share/1V38WfYUVW/';
-const MAIL = 'custodiojessrell07@gmail.com';
 
 const real = (s) => s.replace(/₱([\d,]+)/g, (_, n) =>
-  '₱' + Math.round(parseInt(n.replace(/,/g, ''), 10) * (1 + MARKUP)).toLocaleString('en-US'));
+  '₱' + Math.round(parseInt(n.replace(/,/g, ''), 10) * (1 + (Number(CONFIG.markup) || 0))).toLocaleString('en-US'));
 
 const go = (hash) => { window.location.hash = hash; };
 
@@ -43,7 +39,7 @@ const HEADS = {
 function Price({ value }) {
   return (
     <div className="pr">
-      <span className="off">{TAG}</span>
+      <span className="off">{CONFIG.tag}</span>
       <del><span className="sr">Original price </span>{real(value)}</del>
       <strong><span className="sr">Now </span>{value}</strong>
     </div>
@@ -158,17 +154,17 @@ export function Plan() {
         <section className="svc-sec" aria-labelledby="h-contact">
           <h2 id="h-contact">Developer contacts</h2>
           <div className="grid">
-            <a className="card-wrap" href={FB_URL} target="_blank" rel="noopener noreferrer" aria-label="Message the developer on Facebook">
+            <a className="card-wrap" href={CONFIG.fb_url} target="_blank" rel="noopener noreferrer" aria-label="Message the developer on Facebook">
               <div className="card">
                 <span className="badge"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="" loading="lazy" style={{ opacity: 1 }} /></span>
                 <span className="txt"><b>Facebook</b><em className="tag">Message</em></span>
                 <span className="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg></span>
               </div>
             </a>
-            <a className="card-wrap" href={'mailto:' + MAIL + '?subject=' + encodeURIComponent('Website package inquiry')} aria-label="Email the developer">
+            <a className="card-wrap" href={'mailto:' + CONFIG.mail + '?subject=' + encodeURIComponent('Website package inquiry')} aria-label="Email the developer">
               <div className="card">
                 <span className="badge"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="" loading="lazy" style={{ opacity: 1 }} /></span>
-                <span className="txt"><b>Email</b><em className="tag">{MAIL}</em></span>
+                <span className="txt"><b>Email</b><em className="tag">{CONFIG.mail}</em></span>
                 <span className="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg></span>
               </div>
             </a>

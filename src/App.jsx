@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { PromoBanner } from "./Services.jsx";
+import { CONFIG } from './servicesData.js';
 import { flushSync } from 'react-dom';
 
-const VIDEO = 'https://res.cloudinary.com/bvw3okdf/video/upload/q_auto/New_Project_29_47DDC02.mp4';
 const AD_RATIO = '16 / 9';
 
 export const GROUPS = [];
@@ -93,7 +93,7 @@ function Ad() {
   return (
     <div className="ad" style={{ aspectRatio: AD_RATIO }}>
       {!ready && <i className="sk fill" />}
-      <video ref={v} src={VIDEO} autoPlay loop playsInline preload="auto" disablePictureInPicture disableRemotePlayback
+      <video ref={v} src={CONFIG.video} autoPlay loop playsInline preload="auto" disablePictureInPicture disableRemotePlayback
         controlsList="nodownload noplaybackrate noremoteplayback" tabIndex={-1}
         onCanPlay={() => setReady(true)}
         onPause={(e) => { if (!document.hidden) e.currentTarget.play().catch(() => {}); }}
