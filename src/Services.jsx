@@ -16,7 +16,7 @@ export function PromoBanner() {
         <span className="promo-label">Affordable website development</span>
         <h2 id="promo-h">Your Business Deserves a Website.</h2>
         <p>Get a professional, mobile-friendly website for your business, portfolio, menu, or product catalog without the high agency price.</p>
-        <p className="promo-price">Packages starting at <b>₱99</b> <span>· Maintenance plans from ₱49/month</span></p>
+        <p className="promo-price">Packages starting at <b>₱248</b> <span>· Maintenance plans from ₱123/month</span></p>
         <div className="promo-actions">
           <a className="promo-btn" href={SERVICES_HASH}>Explore Website Packages</a>
         </div>
@@ -110,7 +110,7 @@ export default function Services() {
         right={<button type="button" className="plan-btn" onClick={() => go('#/plan')}>Get Your Plan Now</button>} />
       <main className="shell svc">
         <h1>Website Services</h1>
-        <p className="svc-intro">Affordable websites for individuals, freelancers, students and small businesses. Packages start at ₱99.</p>
+        <p className="svc-intro">Affordable websites for individuals, freelancers, students and small businesses. Packages start at ₱248.</p>
 
         {CATS.map((c) => <PriceTable key={c.id} cat={c} />)}
 
