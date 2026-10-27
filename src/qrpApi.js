@@ -2,8 +2,8 @@ import { LINKS, GROUPS } from './App.jsx';
 import { HERO, QUOTES, STATS, ABOUT, SKILLS, JOURNEY, PROJECTS, CERTS, ACHIEVEMENTS, CONTACT } from './profileData.js';
 import { CATS, INCLUDED, TERMS } from './servicesData.js';
 
-const URL_ = import.meta.env.VITE_SUPABASE_URL || 'https://dmdjytkuwfudkqepkxkl.supabase.co';
-const KEY = import.meta.env.VITE_SUPABASE_KEY || 'sb_publishable_1NOK3tZHHDzr8YBlBVmCuw_VvsKOFI7';
+const URL_ = import.meta.env.VITE_SUPABASE_URL;
+const KEY = import.meta.env.VITE_SUPABASE_KEY;
 const T = ['qrp_links', 'qrp_projects', 'qrp_media', 'qrp_service_categories', 'qrp_service_packages', 'qrp_content'];
 
 async function get(table, signal) {

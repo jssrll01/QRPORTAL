@@ -5,33 +5,9 @@ import { flushSync } from 'react-dom';
 const VIDEO = 'https://res.cloudinary.com/bvw3okdf/video/upload/q_auto/New_Project_29_47DDC02.mp4';
 const AD_RATIO = '16 / 9';
 
-export const GROUPS = [
-  { id: 'xmarket', title: 'Xmarket' },
-  { id: 'apps', title: 'Apps' },
-{ id: 'profile', title: 'Personal Information' },
-  { id: 'social', title: 'Social' },
-  { id: 'contact', title: 'Contact' },
-];
+export const GROUPS = [];
 
-export const LINKS = [
-  { id: 'landing', group: 'xmarket', label: 'Xmarket Landing Page', tag: 'Landing Page', url: 'xmarket-landing.onrender.com', own: true, logo: 'shop' },
-  { id: 'shop', group: 'xmarket', label: 'Xmarket', tag: 'Shop', cta: 'Shop now', feature: true, url: 'xmarket-app.shop', own: true },
-  { id: 'signup', group: 'xmarket', label: 'Create Account', tag: 'Sign up', cta: 'Join', url: 'xmarket-app.onrender.com/signup', own: true, logo: 'shop' },
-  { id: 'xmail', group: 'xmarket', label: 'Xmarket Email', tag: 'Email', url: 'xmarket.official.marketplace@gmail.com', slug: 'gmail', color: 'EA4335' },
-  { id: 'xfb', group: 'xmarket', label: 'Xmarket Facebook Page', tag: 'Page', url: 'https://www.facebook.com/share/18iMp1CDtN/', slug: 'facebook', color: '1877F2' },
-  { id: 'receiptx', group: 'apps', label: 'ReceiptX App', tag: 'App', url: 'receiptx-app.vercel.app', own: true, domain: 'receiptx-app.vercel.app' },
-  { id: 'pricee', group: 'apps', label: 'Pricee App', tag: 'App', url: 'pricee-app.vercel.app', own: true, domain: 'pricee-app.vercel.app' },
-  { id: 'fb', group: 'social', label: 'Facebook', tag: 'Follow', url: 'https://www.facebook.com/share/1V38WfYUVW/', slug: 'facebook', color: '1877F2' },
-  { id: 'ig', group: 'social', label: 'Instagram', tag: 'Follow', url: 'https://www.instagram.com/jssrll.07?mdxt=MTB3NmsxNzlkaHhmaw==', slug: 'instagram', color: 'E4405F' },
-  { id: 'tt', group: 'social', label: 'TikTok', tag: 'Follow', url: 'tiktok.com/@shaomi3_07', slug: 'tiktok', color: '000000' },
-  { id: 'sp', group: 'social', label: 'Spotify', tag: 'Music', url: 'https://open.spotify.com/user/31fjj7m6vyvicxsurqgrb3whpze4?si=LzyxMxudRJCq_dpCQi3NiA&utm_source=copy-link', slug: 'spotify', color: '1DB954' },
-  { id: 'x', group: 'social', label: 'Twitter (X)', tag: 'Follow', url: 'https://x.com/astrater07', slug: 'x', color: '000000' },
-  { id: 'dc', group: 'social', label: 'Discord', tag: 'Join', url: 'https://discord.gg/nZbUyKQv', slug: 'discord', color: '5865F2' },
-  { id: 'sc', group: 'social', label: 'Snapchat', tag: 'Add', url: 'https://www.snapchat.com/add/astrater07?share_id=ghUe2s-mLIw&locale=en-GB', slug: 'snapchat', color: 'F7C600' },
-{ id: 'unknown', group: 'profile', label: 'Developer Profile', tag: 'Profile', url: '#/profile', emoji: '👤' },
-  { id: 'mail', group: 'contact', label: 'Email', tag: 'Message', url: 'custodiojessrell07@gmail.com', slug: 'gmail', color: 'EA4335' },
-  { id: 'tg', group: 'contact', label: 'Telegram', tag: 'Chat', url: 't.me/zyntx01', slug: 'telegram', color: '26A5E4' },
-];
+export const LINKS = [];
 
 const toHref = (u) => {
 if (u.startsWith('#')) return u;
@@ -175,7 +151,7 @@ export default function App() {
 
       <main className="shell">
         <header className="hero">
-          <div style={{ viewTransitionName: 'logo' }} className="logo"><Logo item={LINKS[1]} big /></div>
+          <div style={{ viewTransitionName: 'logo' }} className="logo"><Logo item={LINKS.find((l) => l.id === 'shop') || { id: 'shop', label: 'X', own: true }} big /></div>
           <h1>Xmarket</h1>
           <div className="meta">
             <span className="chip"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>Official links</span>
