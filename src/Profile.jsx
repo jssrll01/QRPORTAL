@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HERO, QUOTES, STATS, ABOUT, PROJECTS, SKILLS, CERTS, ACHIEVEMENTS, PHOTOS, CONTACT } from './profileData.js';
+import { HERO, QUOTES, STATS, ABOUT, PROJECTS, SKILLS, CERTS, ACHIEVEMENTS, CONTACT } from './profileData.js';
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const thumb = (u) => u.replace('/upload/', '/upload/w_400,q_auto,f_auto/');
@@ -125,7 +125,6 @@ export default function Profile() {
                   <dt>Started</dt><dd>{p.started}</dd>
                   <dt>Deployed</dt><dd>{p.deployed}</dd>
                   <dt>Updated</dt><dd>{p.updated}</dd>
-                  <dt>Host</dt><dd>{p.host}</dd>
                 </dl>
               </article>
             ))}
@@ -160,7 +159,6 @@ export default function Profile() {
 
 <Section id="certs" title="Certifications"><a className="pf-open" href="#/certifications"><span><b>View my Certifications</b><small>{CERTS.length} certificates</small></span><span aria-hidden="true">→</span></a></Section>
 <Section id="ach" title="Achievements"><a className="pf-open" href="#/achievements"><span><b>View my Achievements</b><small>{ACHIEVEMENTS.length} achievements</small></span><span aria-hidden="true">→</span></a></Section>
-<Section id="col" title="Collection"><a className="pf-open" href="#/collection"><span><b>View my Collection</b><small>{PHOTOS.length} photos</small></span><span aria-hidden="true">→</span></a></Section>
 
         <Section id="contact" title="Contact">
           <div className="svc-panel pf-panel">

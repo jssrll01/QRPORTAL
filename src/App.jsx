@@ -19,7 +19,6 @@ const LINKS = [
   { id: 'signup', group: 'xmarket', label: 'Create Account', tag: 'Sign up', cta: 'Join', url: 'xmarket-app.onrender.com/signup', own: true, logo: 'shop' },
   { id: 'xmail', group: 'xmarket', label: 'Xmarket Email', tag: 'Email', url: 'xmarket.official.marketplace@gmail.com', slug: 'gmail', color: 'EA4335' },
   { id: 'xfb', group: 'xmarket', label: 'Xmarket Facebook Page', tag: 'Page', url: 'https://www.facebook.com/share/18iMp1CDtN/', slug: 'facebook', color: '1877F2' },
-  { id: 'course', group: 'apps', label: 'Xentrepreneur Online Course', tag: 'Course', url: 'xentrepreneur-app.vercel.app', own: true, domain: 'xentrepreneur-app.vercel.app' },
   { id: 'receiptx', group: 'apps', label: 'ReceiptX App', tag: 'App', url: 'receiptx-app.vercel.app', own: true, domain: 'receiptx-app.vercel.app' },
   { id: 'pricee', group: 'apps', label: 'Pricee App', tag: 'App', url: 'pricee-app.vercel.app', own: true, domain: 'pricee-app.vercel.app' },
   { id: 'fb', group: 'social', label: 'Facebook', tag: 'Follow', url: 'https://www.facebook.com/share/1V38WfYUVW/', slug: 'facebook', color: '1877F2' },
@@ -29,7 +28,7 @@ const LINKS = [
   { id: 'x', group: 'social', label: 'Twitter (X)', tag: 'Follow', url: 'https://x.com/astrater07', slug: 'x', color: '000000' },
   { id: 'dc', group: 'social', label: 'Discord', tag: 'Join', url: 'https://discord.gg/nZbUyKQv', slug: 'discord', color: '5865F2' },
   { id: 'sc', group: 'social', label: 'Snapchat', tag: 'Add', url: 'https://www.snapchat.com/add/astrater07?share_id=ghUe2s-mLIw&locale=en-GB', slug: 'snapchat', color: 'F7C600' },
-{ id: 'unknown', group: 'profile', label: 'Developer Profile', tag: 'Profile', url: '#/profile' },
+{ id: 'unknown', group: 'profile', label: 'Developer Profile', tag: 'Profile', url: '#/profile', emoji: '👤' },
   { id: 'mail', group: 'contact', label: 'Email', tag: 'Message', url: 'custodiojessrell07@gmail.com', slug: 'gmail', color: 'EA4335' },
   { id: 'tg', group: 'contact', label: 'Telegram', tag: 'Chat', url: 't.me/zyntx01', slug: 'telegram', color: '26A5E4' },
 ];
@@ -71,7 +70,7 @@ const Logo = memo(function Logo({ item, big }) {
     <span className={'badge' + (big ? ' big' : '') + (ok ? ' ok' : '')}>
       {src
         ? <img key={src} src={src} alt="" decoding="async" onLoad={() => setOk(true)} onError={() => setI((n) => n + 1)} />
-        : <span className="mono">{item.label[0]}</span>}
+        : <span className="mono">{item.emoji || item.label[0]}</span>}
       {src && !ok && <i className="sk fill" />}
     </span>
   );

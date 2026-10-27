@@ -70,13 +70,13 @@ export const JOURNEY = [
 ];
 
 export const PROJECTS = [
-  { name: 'PROJECT ASTRA', category: 'Portfolio, Web App, UI/UX Design', type: 'Web App', status: 'Beta', version: 'v2.1.0', started: '08/20/2026', deployed: '10/10/2026', updated: '10/11/2026', host: 'Render' },
-  { name: 'XMARKET', category: 'E-commerce, Digital Market, Marketplace', type: 'Web App', status: 'Active', version: 'v2.5.0', started: '08/20/2026', deployed: '09/25/2026', updated: '09/29/2026', host: 'Render' },
-  { name: 'XONLINE WALLET', category: 'Finance, Digital Wallet', type: 'Web App', status: 'Active', version: 'v1.7.1', started: '09/01/2026', deployed: '09/17/2026', updated: '09/20/2026', host: 'Render' },
-  { name: 'NOVAOKE', category: 'Casual, Entertainment, Tradition, Digital', type: 'Website / Web App', status: 'Archive', version: 'Unknown', started: 'N/A', deployed: 'N/A', updated: 'N/A', host: 'Vercel' },
-  { name: 'PRICEE', category: 'E-commerce, Business', type: 'Website / Web App', status: 'Active', version: 'v1.5.0', started: '09/01/2026', deployed: '09/10/2026', updated: '09/15/2026', host: 'Render' },
-  { name: 'XENTREPRENEUR', category: 'Business, Course', type: 'Website / Web App', status: 'Active', version: 'v2.5.0', started: 'N/A', deployed: 'N/A', updated: '09/18/2026', host: 'Render' },
-  { name: 'ReceiptX', category: 'Business, Tools', type: 'Website / Web App', status: 'Active', version: 'v1.9.3', started: 'N/A', deployed: 'N/A', updated: '09/20/2026', host: 'Render' },
+  { name: 'PROJECT ASTRA', category: 'Portfolio, Web App, UI/UX Design', type: 'Web App', status: 'Beta', version: 'v2.1.0', started: '08/20/2026', deployed: '10/10/2026', updated: '10/11/2026' },
+  { name: 'XMARKET', category: 'E-commerce, Digital Market, Marketplace', type: 'Web App', status: 'Active', version: 'v2.5.0', started: '08/20/2026', deployed: '09/25/2026', updated: '09/29/2026' },
+  { name: 'XONLINE WALLET', category: 'Finance, Digital Wallet', type: 'Web App', status: 'Active', version: 'v1.7.1', started: '09/01/2026', deployed: '09/17/2026', updated: '09/20/2026' },
+  { name: 'NOVAOKE', category: 'Casual, Entertainment, Tradition, Digital', type: 'Website / Web App', status: 'Archive', version: 'Unknown', started: 'N/A', deployed: 'N/A', updated: 'N/A' },
+  { name: 'PRICEE', category: 'E-commerce, Business', type: 'Website / Web App', status: 'Active', version: 'v1.5.0', started: '09/01/2026', deployed: '09/10/2026', updated: '09/15/2026' },
+  { name: 'XENTREPRENEUR', category: 'Business, Course', type: 'Website / Web App', status: 'Active', version: 'v2.5.0', started: 'N/A', deployed: 'N/A', updated: '09/18/2026' },
+  { name: 'ReceiptX', category: 'Business, Tools', type: 'Website / Web App', status: 'Active', version: 'v1.9.3', started: 'N/A', deployed: 'N/A', updated: '09/20/2026' },
 ];
 
 export const SKILLS = {
